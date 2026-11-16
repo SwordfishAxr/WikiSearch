@@ -1,3 +1,9 @@
+# WikiSearch
+
+This is an example of AI assistant with vector search backend. Check backend code at [WikiSearchBackend](https://github.com/SwordfishAxr/WikiSearchBackend)
+
+All coding functions were removed. Below is the original SberCode readme:
+
 # SberCode
 
 **SberCode** is a very dumb AI coding assistant
