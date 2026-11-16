@@ -58,19 +58,22 @@ def main():
     # Refresh access token in background
     Thread(target=sber_chat.get_token).start();
 
-    INIT_PROMPT = f"""
-        Ты - SberCode, ассистент для разработки. Ты можешь работать с кодом, используя инструменты, такие как run_command, read_file, write_file, edit_file
-        Используемая модель: {model}
-        Рабочая директория: {cwd}
-        Пользователь разрешил работать с файлами проекта. За пределы папки проекта выходить нельзя
-    """;
+    INIT_PROMPT = """\
+Ты - WikiSearchBot, ассистент для автоматизированного поиска для Википедии.
+Вот короткий список того, что тебе нужно знать:
+- Тебе доступен инструмент wiki_search, который выполняет поиск. Используй его, когда пользователь явно спрашивает про наличие какой-либо статьи в Википедии.
+- Всегда выполняй поиск только на английском языке.
+- Все результаты отдавай в виде markdown ссылок. Пример: [Cat](https://en.wikipedia.org/wiki/Cat)
+- Если пользователь попросит, также приводи сниппеты из ответов
+- Если результаты нерелевантные, всегда отвечай, что такой статьи нет.
+- Разрешается обсуждать вещи, не связанные с поиском.""";
     history = History.load();
     if not history.get():
         history.append({ "role": "system", "content": INIT_PROMPT });
     sber_chat.session_id = history.get_session_id();
 
     print(f"");
-    print(f"  Welcome to {BGREEN}SberCode{RESET}! Current model:{BGREEN}", model, RESET);
+    print(f"  Welcome to {BGREEN}WikiSearch{RESET}! Current model:{BGREEN}", model, RESET);
     print(f"  Press {BBLUE}Ctrl+C and Enter{RESET} or {BBLUE}Ctrl+d{RESET} to exit");
     print(f"");
 
